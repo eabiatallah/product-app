@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: product-app
+  jackson:
+    deserialization:
+      # Treat an omitted/null JSON value for a primitive field (e.g. boolean flags like
+      # AttributeDefinition.required/variantAxis) as its Java default instead of a 400 error.
+      fail-on-null-for-primitives: false
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/product-app
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:9090/oauth2/jwks # URL to fetch the public keys for JWT validation
+
+server:
+  port: 8082
